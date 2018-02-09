@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "账单明细导出";
+}
+
+<div class="jumbotron">
+    @{
+        if (ViewData["tips"] != null)
+        {
+            if (!string.IsNullOrEmpty(ViewData["tips"].ToString()))
+            {
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>警告!</strong> @ViewData["tips"].ToString()
+                </div>
+                ViewData["tips"] = "";
+            }
+        }
+    }
+    <form action="" id="updateform" name="updateform" method="post" class="form-inline" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="date_s">开始时间</label>
+            <input id="date_s" name="date_s" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="date_e">结束时间</label>
+            <input id="date_e" name="date_e" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <input type="file" id="fexcel" name="fexcel" />
+        </div>
+        <div class="form-group">
+            <select  name="op"><option value="1">1万元一组导出</option><option value="2">一起导出</option></select>
+        </div>
+        <input type="submit" name="supdate" id="supdate" />
+    </form>
+    <p>=SUM(发票号00010001:发票号00010038!M2:M2000)</p>
+    <p>最后一张sheet为核对 如果有缺失请把周期选长一点再导出一遍</p>
+    <a href="~/File/瀚医6月人寿.xls">导入模版下载</a>
+</div>
+
